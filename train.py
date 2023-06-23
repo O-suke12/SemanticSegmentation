@@ -65,11 +65,12 @@ def fit(epochs, model, train_loader, valid_loader, criterion, optimizer, schedul
         train_accs.append(train_acc/len(train_loader))
         valid_losses.append(valid_loss/len(valid_loader))
         valid_accs.append(valid_acc/len(valid_loader))
+        
         if min_loss > (valid_loss/len(valid_loader)):
             print('Loss Decreasing.. {:.3f} >> {:.3f} '.format(min_loss, (valid_loss/len(valid_loader))))
             min_loss = (valid_loss/len(valid_loader))
             decrease += 1
-            if decrease % 5 == 0:
+            if decrease % 3 == 0:
                 print('saving model...')
                 torch.save(model, 'Unet-{:.3f}.pt'.format(valid_acc/len(valid_loader)))
 
