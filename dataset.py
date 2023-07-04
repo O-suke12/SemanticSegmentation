@@ -8,10 +8,10 @@ import cv2
 from PIL import Image
 
 
-df_class = pd.read_csv("dataset/class_dict_seg.csv")
+df_class = pd.read_csv("class_dict_seg.csv")
 dict = {"Name":[]}
 df = pd.DataFrame(dict)
-df = pd.DataFrame(os.listdir("dataset/RGB_color_image_masks/RGB_color_image_masks"))
+df = pd.DataFrame(os.listdir("RGB_color_image_masks/RGB_color_image_masks"))
 df_train, df_test = train_test_split(df, test_size=0.1, random_state=19)
 df_train, df_valid = train_test_split(df_train, test_size=0.15, random_state=19)
 

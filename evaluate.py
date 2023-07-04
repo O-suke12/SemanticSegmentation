@@ -87,27 +87,15 @@ def evaluation(Unet, test_set, mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.
     save_images(Unet, test_set, device, mean_id, mean, std, cond="mean")
     save_images(Unet, test_set, device, worst_id, mean, std, cond="worst")
 
-def read_model():
-    model_name = ""
-    max_acc = 0.0
-    for file in os.listdir():
-        if file.endswith(".pt"):
-            acc = os.path.splitext(file)[0]
-            acc = float(acc[-5:])
-
-            if max_acc < acc:
-                max_acc = acc
-                model_name = file
-    return model_name
         
 
 def main():
-    image_dir = "dataset/dataset/semantic_drone_dataset/original_images"
-    mask_dir = "dataset/dataset/semantic_drone_dataset/label_images_semantic"
+    image_dir = "dataset/semantic_drone_dataset/original_images"
+    mask_dir = "dataset/semantic_drone_dataset/label_images_semantic"
     t_test = A.Resize(640, 864, interpolation=cv2.INTER_NEAREST)
     test_set = test_dataset(image_dir, mask_dir, df_test, transform=t_test)
     
-    model = torch.load(read_model())
+    model = torch.load("Unet-Mobilenet.pt")
     evaluation(model, test_set)
 
 

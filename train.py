@@ -69,14 +69,10 @@ def fit(epochs, model, train_loader, valid_loader, criterion, optimizer, schedul
         if min_loss > (valid_loss/len(valid_loader)):
             print('Loss Decreasing.. {:.3f} >> {:.3f} '.format(min_loss, (valid_loss/len(valid_loader))))
             min_loss = (valid_loss/len(valid_loader))
-            decrease += 1
-            if decrease % 3 == 0:
-                print('saving model...')
-                torch.save(model, 'Unet-{:.3f}.pt'.format(valid_acc/len(valid_loader)))
 
-        print(f"\nEpoch: {epoch+1} | Train_loss: {train_loss/len(train_loader):.5f} | Train_acc:       {(train_acc/len(train_loader)):.5f} | Valid_loss: {valid_loss/len(valid_loader):.5f} | Valid_acc: {(valid_acc/len(valid_loader)):.5f} \n")
+        print(f"\nEpoch: {epoch+1} | Train_loss: {train_loss/len(train_loader):.5f} | Train_acc:   {(train_acc/len(train_loader)):.5f} | Valid_loss: {valid_loss/len(valid_loader):.5f} | Valid_acc: {(valid_acc/len(valid_loader)):.5f} \n")
     history = {'train_loss' : train_losses, 'val_loss': valid_losses,
-               'train_acc' :train_acc, 'val_acc':valid_acc,
+               'train_acc' :train_accs, 'val_acc':valid_accs,
                'lrs': lrs}
     return history
 
