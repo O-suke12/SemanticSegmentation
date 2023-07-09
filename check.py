@@ -35,8 +35,13 @@ myKeys.sort()
 result = {i: result[i] for i in myKeys}
 
 fig = plt.figure()
+color = np.array(range(23))
+plt.imshow([color,color, color])
+fig.savefig('evaluation/imcolor_dist.png')
+
+fig = plt.figure()
 plt.bar(result.keys(), result.values(), width=0.9)
 plt.xticks(list(result.keys()), rotation ='horizontal')
 fig.savefig('evaluation/image_dist.png')
 
-plt.imshow([np.array(range(23)),np.array(range(23))])
+
